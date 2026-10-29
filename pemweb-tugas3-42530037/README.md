@@ -3,7 +3,9 @@
 Aplikasi CRUD Master Data Buku berbasis Express.js, EJS, dan MySQL
 dengan connection pool (mysql2/promise) dan 100% prepared statements.
 
-**Nama:** Maria Stefania Misa    **NIM:** 42530037
+**Nama:** Maria Stefania Misa    
+
+**NIM:** 42530037
 
 ## Teknologi
 Node.js, Express, EJS, MySQL (MAMP), mysql2, dotenv, nodemon
