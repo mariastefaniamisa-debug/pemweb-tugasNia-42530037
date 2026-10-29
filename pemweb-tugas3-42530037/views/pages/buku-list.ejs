@@ -1,0 +1,63 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card">
+    <div class="card-head">
+        <h2>Master Data Buku</h2>
+        <a href="/buku/tambah" class="btn btn-primary">+ Tambah Buku</a>
+    </div>
+
+<form action="/buku" method="GET" class="search-form">
+    <input type="text" name="cari" value="<%= cari %>" placeholder="Cari judul atau penulis...">
+    <button type="submit" class="btn btn-primary">Cari</button>
+    <% if (cari) { %>
+        <a href="/buku" class="btn btn-ghost">Reset</a>
+    <% } %>
+</form>
+
+    <% if (cari) { %>
+        <p class="info">Hasil pencarian untuk: <strong><%= cari %></strong> (<%= bukuList.length %> data)</p>
+    <% } %>
+
+    <div class="table-wrap">
+        <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Judul</th>
+            <th>Penulis</th>
+            <th>Sinopsis</th>
+            <th>Harga Sewa</th>
+            <th>Status</th>
+            <th>Tgl Terbit</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+<tbody>
+        <% if (bukuList.length === 0) { %>
+            <tr><td colspan="8" class="empty">Belum ada data buku.</td></tr>
+        <% } else { %>
+            <% bukuList.forEach(item => { %>
+            <tr>
+                <td><%= item.id %></td>
+                <td><strong><%= item.judul %></strong></td>
+                <td><%= item.penulis %></td>
+                <td class="sinopsis"><%= item.sinopsis %></td>
+                <td>Rp <%= Number(item.harga_sewa).toLocaleString('id-ID') %></td>
+                <td><span class="badge badge-<%= item.status %>"><%= item.status %></span></td>
+                <td><%= item.tanggal_tampil %></td>
+                <td class="aksi">
+                <a href="/buku/edit/<%= item.id %>" class="link-edit">Edit</a>
+                <form action="/buku/hapus/<%= item.id %>" method="POST"
+                        onsubmit="return confirm('Yakin ingin menghapus buku ini?');">
+                    <button type="submit" class="link-hapus">Hapus</button>
+                </form>
+                </td>
+            </tr>
+            <% }) %>
+        <% } %>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

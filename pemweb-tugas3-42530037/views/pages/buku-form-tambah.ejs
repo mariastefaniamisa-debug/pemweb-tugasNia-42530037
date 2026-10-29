@@ -1,0 +1,42 @@
+<%- include('../partials/header', { pageTitle: pageTitle }) %>
+
+<div class="card form-card">
+  <h2>Formulir Tambah Buku</h2>
+  <form action="/buku/tambah" method="POST">
+    <div class="field">
+      <label for="judul">Judul</label>
+      <input type="text" id="judul" name="judul" maxlength="150" required>
+    </div>
+    <div class="field">
+      <label for="penulis">Penulis</label>
+      <input type="text" id="penulis" name="penulis" maxlength="100" required>
+    </div>
+    <div class="field">
+      <label for="sinopsis">Sinopsis</label>
+      <textarea id="sinopsis" name="sinopsis" rows="4"></textarea>
+    </div>
+    <div class="field">
+      <label for="harga_sewa">Harga Sewa (Rp)</label>
+      <input type="number" id="harga_sewa" name="harga_sewa" min="0" step="500" required>
+    </div>
+    <div class="field">
+      <label for="status">Status</label>
+      <select id="status" name="status" required>
+        <option value="">-- Pilih Status --</option>
+        <option value="tersedia">Tersedia</option>
+        <option value="dipinjam">Dipinjam</option>
+        <option value="rusak">Rusak</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="tanggal_terbit">Tanggal Terbit</label>
+      <input type="date" id="tanggal_terbit" name="tanggal_terbit" required>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Simpan ke Basis Data</button>
+      <a href="/buku" class="btn btn-ghost">Batal</a>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
